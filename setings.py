@@ -1,0 +1,1 @@
+DB_URL = "postgresql://bwsyvryc:fwhAk7zxT-lyNV9Db21WtSvv4WrzbK95@mouse.db.elephantsql.com/bwsyvryc"
