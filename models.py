@@ -14,7 +14,6 @@ class User(Base):
     check_photo = Column(Boolean)
     in_active = Column(Boolean)
 
-
     def __repr__(self):
         return f'<User {self.username} {self.name} {self.date_time_registration}>'
 
