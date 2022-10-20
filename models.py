@@ -1,3 +1,4 @@
+from enum import unique
 from sqlalchemy import Column, Integer, String, DateTime, JSON, Boolean
 from db import Base, engine
 
@@ -6,6 +7,7 @@ class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     username = Column(String, unique=True)
+    telegram_id = Column(Integer, unique=True)
     name = Column(String)
     date_time_registration = Column(DateTime)
     last_time_active = Column(DateTime)
