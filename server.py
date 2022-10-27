@@ -30,13 +30,14 @@ class UserView(ModelView):
 	
 	
 	
-	# ВЫВОД ФОТО В АДМИНКУ
+	# ОТОБРАЖЕНИЕ ФОТО В АДМИНКЕ
 	# ---------------------------------------------------------------------------------------------------
 	
 	def _list_thumbnail(view, context, model, name):
 		if not model.link_photo:
 			return ''
 		url = url_for('static', filename=os.path.join('user_photo/', model.link_photo))
+		# url = url_for('user_photo', filename=os.path.join(model.link_photo))
 		if model.link_photo.split('.')[-1] in ['jpg', 'jpeg', 'png', 'svg', 'gif']:
 			return Markup(f'<img src={url} width="70">')
 
