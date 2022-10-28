@@ -131,4 +131,8 @@ dmypy.json
 setings.py
 .vscode/
 alembic.ini
-static/user_photo/*.*
+*.jpg
+*.jpeg
+*.png
+*.svg
+*.gif
