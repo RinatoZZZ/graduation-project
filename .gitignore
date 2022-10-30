@@ -132,6 +132,5 @@ setings.py
 .vscode/
 alembic.ini
 
-
 # игнорировать все файлы в любом каталоге с именем user_photo
 user_photo/
