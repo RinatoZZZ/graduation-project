@@ -132,5 +132,9 @@ setings.py
 .vscode/
 alembic.ini
 
-# игнорировать все файлы в любом каталоге с именем user_photo
-user_photo/
+# игнорировать все фото в любом каталоге с именем user_photo
+user_photo/*.jpg
+user_photo/*.jpeg
+user_photo/*.png
+user_photo/*.svg
+user_photo/*.gif
