@@ -133,9 +133,9 @@ setings.py
 alembic.ini
 
 # игнорировать все фото в любом каталоге с именем user_photo
-user_photo/*.jpg
-user_photo/*.jpeg
-user_photo/*.png
-user_photo/*.svg
-user_photo/*.gif
+static/user_photo/*.jpg
+static/user_photo/*.jpeg
+static/user_photo/*.png
+static/user_photo/*.svg
+static/user_photo/*.gif
 
