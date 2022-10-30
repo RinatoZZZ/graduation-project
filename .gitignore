@@ -131,3 +131,11 @@ dmypy.json
 setings.py
 .vscode/
 alembic.ini
+
+# игнорировать все фото в любом каталоге с именем user_photo
+static/user_photo/*.jpg
+static/user_photo/*.jpeg
+static/user_photo/*.png
+static/user_photo/*.svg
+static/user_photo/*.gif
+
