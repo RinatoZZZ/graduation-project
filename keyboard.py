@@ -1,8 +1,4 @@
 from telegram import ReplyKeyboardMarkup
-import face_recognition
-from telegram.ext import (CommandHandler, ConversationHandler, Filters,
-                          MessageHandler, Updater)
-
 
 
 def keyboard_registration():

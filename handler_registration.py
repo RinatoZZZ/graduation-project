@@ -1,19 +1,14 @@
 import os
 import numpy
 
-from dotenv import load_dotenv
-from numpy import delete
-from sqlalchemy import create_engine, engine_from_config, exists, false
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session, sessionmaker
-from telegram import  ReplyKeyboardRemove, User
+from sqlalchemy import exists
+from telegram import ReplyKeyboardRemove, User
 import face_recognition
-from telegram.ext import (CommandHandler, ConversationHandler, Filters,
-                          MessageHandler, Updater)
+
 
 from db import db_session
 from models import User
-from keyboard import keyboard_registration, keyboard_enter
+from keyboard import keyboard_enter
 
 
 def start_registration(update, context):

@@ -1,16 +1,8 @@
 import os
 import numpy
-from multiprocessing import context
 
-from dotenv import load_dotenv
-from numpy import delete
-from sqlalchemy import create_engine, engine_from_config, exists, false
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session, sessionmaker
-from telegram import  ReplyKeyboardRemove, User
+from telegram import ReplyKeyboardRemove, User
 import face_recognition
-from telegram.ext import (CommandHandler, ConversationHandler, Filters,
-                          MessageHandler, Updater)
 
 from db import db_session
 from models import User
@@ -48,10 +40,7 @@ def examination_photo(update, context):
 
         else:
             update.message.reply_text(
-                "Фотография загружена, идет индентификация")
-
-        
-        
+                "Пользователь с данной биаметрией отсуствует")
     except IndexError:
         os.remove(f"check_photo/{user_id}.jpg")
         update.message.reply_text("Лицо не распознано! Загрузите другую фотографию")

@@ -3,18 +3,9 @@ import os
 from multiprocessing import context
 
 from dotenv import load_dotenv
-from sqlalchemy import create_engine, engine_from_config, exists, false
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session, sessionmaker
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, User
 from telegram.ext import (CommandHandler, ConversationHandler, Filters,
                           MessageHandler, Updater)
 
-from db import db_session
-from models import User
-import psycopg2
-from psycopg2.errors import UniqueViolation
-from sqlalchemy.exc import IntegrityError
 
 from handler_enter import examination_user, examination_photo
 from handler_registration import start_registration, name_registration, photo_registration
