@@ -1,5 +1,6 @@
+from copyreg import pickle
 import os
-import numpy
+import pickle
 
 from telegram import ReplyKeyboardRemove, User
 import face_recognition
@@ -34,10 +35,10 @@ def examination_photo(update, context):
         user = db_session.query(User).filter(User.telegram_id == user_id).first()
         update.message.reply_text(
             "Фотография загружена, идет индентификация")
-        if user.vector_photo == numpy.array2string(biden_image):
+        #photo = pickle.loads(user.vector_photo)
+        if photo == biden_image:
             update.message.reply_text(
             "Регистрация прошла успешно")
-
         else:
             update.message.reply_text(
                 "Пользователь с данной биаметрией отсуствует")

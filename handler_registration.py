@@ -1,5 +1,8 @@
+from codecs import utf_32_decode
 import os
 import numpy
+from datetime import datetime
+import pickle
 
 from sqlalchemy import exists
 from telegram import ReplyKeyboardRemove, User
@@ -14,11 +17,12 @@ from keyboard import keyboard_enter
 def start_registration(update, context):
     user_id = update.message.from_user.id
     exist = db_session.query(exists().where(User.telegram_id == user_id)).scalar()
-
+    now = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
     if exist == False:
         user = User(
             username=update.message.from_user.name,
-            telegram_id=update.message.from_user.id,
+            telegram_id=user_id,
+            date_time_registration=now,
             check_photo=False,
             in_active=False,
             name='0'
@@ -57,7 +61,8 @@ def photo_registration(update, context):
         image = face_recognition.load_image_file(f"static/user_photo/{user_id}.jpg")
         biden_image = face_recognition.face_encodings(image)[0]
         user = db_session.query(User).filter(User.telegram_id == user_id).first()
-        user.vector_photo = numpy.array2string(biden_image)
+        #user.vector_photo = pickle.dumps(biden_image).decode()
+        user.link_photo = (f"{user_id}.jpg")
         db_session.commit()
         update.message.reply_text(
             "Файл сохранен!",
