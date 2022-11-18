@@ -8,7 +8,8 @@ from telegram.ext import (CommandHandler, ConversationHandler, Filters,
 
 
 from handler_enter import examination_user, examination_photo
-from handler_registration import start_registration, name_registration, photo_registration
+from handler_registration import (start_registration, name_registration,
+                                  photo_registration)
 from keyboard import keyboard_registration
 
 
@@ -21,12 +22,8 @@ def start(update, context):
                               reply_markup=keyboard_registration())
 
 
-class BadRequest(Exception):
-    pass
-
-
 def cancel(update, context):
-    return keyboard_registration
+    update.message.reply_text("Не понимаю")
 
 
 def main():
@@ -40,25 +37,15 @@ def main():
                       start_registration)],
         states={
             "name": [MessageHandler(Filters.text, name_registration)],
-            "photo": [MessageHandler(Filters.photo, photo_registration)]
+            "photo": [MessageHandler(Filters.photo, photo_registration)],
+            "enter": [MessageHandler(Filters.regex("^(Вход)$"), examination_user)],
+            "photo_ver": [MessageHandler(Filters.photo, examination_photo)],
         },
-        fallbacks=[MessageHandler(Filters.regex("^(Выход)$"), cancel)]
+        fallbacks=[MessageHandler(Filters.video, cancel)]
     )
-
-    enter_handler = ConversationHandler(
-        entry_points=[MessageHandler(Filters.regex("^(Вход)$"),
-                      examination_user)],
-        states={
-            "name": [MessageHandler(Filters.photo, examination_photo)],
-        },
-        fallbacks=[MessageHandler(Filters.regex("^(Выход)$"), cancel)]
-    )
-
 
     dp.add_handler(CommandHandler("Start", start))
     dp.add_handler(registration_handler)
-    dp.add_handler(enter_handler)
-
 
     logging.info("Бот стартовал")
     mybot.start_polling()
